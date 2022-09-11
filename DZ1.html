@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html> 
+<head>
+  <title></title>
+  <style>
+  </style>
+</head> 
+<body>
+  <canvas id="myCanvas" width="550px" height="100px"></canvas> 
+  <script>
+    var canvas = document.querySelector("#myCanvas");
+    var context = canvas.getContext("2d");
+    var context; // переменная для хранения контекста
+var container; // переменная для хранения canvas элемента
+var currentAngle = 1; // текущее значение угла
+var radius = 200; // радиус окружности
+var baseX = 500; // x координата центра окружности
+var baseY = 500; // y координата центра окружности
+
+window.onload = function() {
+  container = document.createElement("canvas"); // создаем canvas элемент 
+  container.width = 1000; // устанваливаем ширину
+  container.height = 1000; // устанавливаем высоту
+
+  document.body.appendChild(container); // добавляем canvas в DOM
+
+  context = container.getContext('2d'); // получаем конткест
+  context.fillStyle = '#000'; // устанавливаем цвет заливки в черный
+  context.fillRect(0, 0, container.width, container.height); // собственно заливаем все черным
+
+  setInterval(function() {
+    // считаем косинус текущего значения угла
+    // и умножаем на значение радиуса
+    var vx = Math.cos(currentAngle) * radius;
+
+    // считаем синус текущего значения угла
+    // и умножаем на значение радиуса
+    
+    var vy = Math.sin(currentAngle) * radius;
+    context.fillStyle = '#000'; // устанавливаем цвет заливки в розовый
+
+    context.fillRect(baseX + vx -10, baseY + vy -10, 50, 50);
+
+    
+    // считем новую позицию по x и y относительно центра окружности
+    // и заливаем ее квадратиком высотой и шириной в 5 пикселей
+
+    // увеличиваем значение угла
+    currentAngle += 0.01;
+    context.fillStyle = '#ffc2cc'; // устанавливаем цвет заливки в розовый
+
+    context.fillRect(baseX + vx, baseY + vy, 10, 10);
+  }, 5)
+}
+  </script> 
+</body> 
+</html>
